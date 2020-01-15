@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="org.via.IapiTool"
+          class="org.via.impl.apiToolImpl"
+          init-method="init">
+        <property name="securityService" ref="org.sakaiproject.authz.api.SecurityService" />
+        <property name="sessionManager" ref="org.sakaiproject.tool.api.SessionManager" />
+        <property name="toolManager" ref="org.sakaiproject.tool.api.ToolManager" />
+        <property name="userDirectoryService" ref="org.sakaiproject.user.api.UserDirectoryService" />
+        <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
+
+        <property name="schedulerManager" ref="org.sakaiproject.api.app.scheduler.SchedulerManager" />
+        <property name="functionManager" ref="org.sakaiproject.authz.api.FunctionManager" />
+        <property name="entityManager" ref="org.sakaiproject.entity.api.EntityManager" />
+        <property name="emailService" ref="org.sakaiproject.email.api.EmailService" />
+        <property name="activityDao" ref="org.via.dao.cActivityDao" />
+        <property name="userDao" ref="org.via.dao.cUserDao" />
+        <property name="authzGroupService" ref="org.sakaiproject.authz.api.AuthzGroupService" />
+
+    </bean>
+
+    <bean id="org.via.dao.cUserDao" class="org.via.impl.cUserDaoImpl">
+        <property name="sqlService" ref="org.sakaiproject.db.api.SqlService" />
+
+    </bean>
+    <bean id="org.via.dao.cActivityDao" class="org.via.impl.cActivityDaoImpl">
+        <property name="sqlService" ref="org.sakaiproject.db.api.SqlService" />
+        <property name="Uds" ref="org.sakaiproject.user.api.UserDirectoryService" />
+        <property name="apiTool" ref="org.via.IapiTool"/>
+    </bean>
+
+    <!-- This is the helper that will register the above bean with the ScheduleManager
+Things to note:
+    - id must end with the same bean id from above
+    - class must be the class of the SpringJobBeanWrapper, ie don't change it.
+    - the beanId property must match the bean id from above
+    - the jobName property is the text that will be rendered in the list of jobs in Sakai
+-->
+<!--
+    <bean id="syncViaUsers"
+          class="org.via.impl.jobs.SyncViaUsers">
+
+        <property name="configMessage">
+            <value>This is a config parameter</value>
+        </property>
+        <property name="apiTool" ref="org.via.IapiTool"/>
+        <property name="sqlService" ref="org.sakaiproject.db.api.SqlService" />
+    </bean>
+-->
+    <bean id="syncViaUsers2" class="org.via.impl.jobs.SyncViaUsers2">
+        <property name="apiTool" ref="org.via.IapiTool"/>
+        <property name="sqlService" ref="org.sakaiproject.db.api.SqlService" />
+        <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
+        <property name="userDirectoryService" ref="org.sakaiproject.user.api.UserDirectoryService" />
+        <property name="serverConfigurationService" ref="org.sakaiproject.component.api.ServerConfigurationService" />
+    </bean>
+    <bean id="viaReminders"
+          class="org.via.impl.jobs.ViaReminders">
+
+        <property name="apiTool" ref="org.via.IapiTool"/>
+        <property name="sqlService" ref="org.sakaiproject.db.api.SqlService" />
+    </bean>
+    <!--
+    <bean id="org.sakaiproject.api.app.scheduler.JobBeanWrapper.syncViaUsers"
+          class="org.sakaiproject.component.app.scheduler.jobs.SpringJobBeanWrapper"
+          init-method="init">
+
+        <property name="beanId">
+            <value>syncViaUsers</value>
+        </property>
+
+        <property name="jobName">
+            <value>Sync VIA users</value>
+        </property>
+
+        <property name="schedulerManager">
+            <ref bean="org.sakaiproject.api.app.scheduler.SchedulerManager" />
+        </property>
+
+    </bean>
+-->
+    <bean id="org.sakaiproject.api.app.scheduler.JobBeanWrapper.syncViaUsers2"
+          class="org.sakaiproject.component.app.scheduler.jobs.SpringJobBeanWrapper"
+          init-method="init">
+
+        <property name="beanId">
+            <value>syncViaUsers2</value>
+        </property>
+
+        <property name="jobName">
+            <value>Sync VIA users</value>
+        </property>
+
+        <property name="schedulerManager">
+            <ref bean="org.sakaiproject.api.app.scheduler.SchedulerManager" />
+        </property>
+    </bean>
+
+    <bean id="org.sakaiproject.api.app.scheduler.JobBeanWrapper.viaReminders"
+          class="org.sakaiproject.component.app.scheduler.jobs.SpringJobBeanWrapper"
+          init-method="init">
+
+        <property name="beanId">
+            <value>viaReminders</value>
+        </property>
+
+        <property name="jobName">
+            <value>Via Reminders</value>
+        </property>
+
+        <property name="schedulerManager">
+            <ref bean="org.sakaiproject.api.app.scheduler.SchedulerManager" />
+        </property>
+
+    </bean>
+</beans>

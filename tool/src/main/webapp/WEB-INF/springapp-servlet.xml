@@ -1,0 +1,67 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+            <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+            <property name="suffix" value=".jsp" />
+            <property name="order" value="10" />
+	</bean>
+	
+	<bean name="/index.htm"	class="org.via.tool.IndexController" scope="request">
+            <property name="apiTool" ref="org.via.IapiTool"/>
+            <property name="userDao" ref="org.via.dao.cUserDao"/>
+            <property name="activityDao" ref="org.via.dao.cActivityDao"/>
+	</bean>
+        
+        <bean name="/permissions.htm" class="org.via.tool.PermissionsController" scope="request">
+             <property name="apiTool" ref="org.via.IapiTool"/>
+            <property name="userDao" ref="org.via.dao.cUserDao"/>
+             <property name="activityDao" ref="org.via.dao.cActivityDao"/>
+	</bean>
+        
+         <bean name="/activity_new.htm" class="org.via.tool.NewActivityController" scope="request">
+             <property name="apiTool" ref="org.via.IapiTool"/>
+            <property name="userDao" ref="org.via.dao.cUserDao"/>
+             <property name="activityDao" ref="org.via.dao.cActivityDao"/>
+	</bean>
+        
+         <bean name="/activity_details.htm" class="org.via.tool.ActivityController" scope="request">
+             <property name="apiTool" ref="org.via.IapiTool"/>
+            <property name="userDao" ref="org.via.dao.cUserDao"/>
+            <property name="activityDao" ref="org.via.dao.cActivityDao"/>
+	</bean>
+        
+        <bean name="/activity_access.htm" class="org.via.tool.AccessActivityController" scope="request">
+             <property name="apiTool" ref="org.via.IapiTool"/>
+             <property name="userDao" ref="org.via.dao.cUserDao"/>
+            <property name="activityDao" ref="org.via.dao.cActivityDao"/>
+	</bean>
+        
+        <bean name="/assistance.htm" class="org.via.tool.AssistanceConroller" scope="request">
+             <property name="apiTool" ref="org.via.IapiTool"/>
+            <property name="userDao" ref="org.via.dao.cUserDao"/>
+            <property name="activityDao" ref="org.via.dao.cActivityDao"/>
+	</bean>
+        
+        <bean name="/activity_delete.htm" class="org.via.tool.DeleteActivityController" scope="request">
+             <property name="apiTool" ref="org.via.IapiTool"/>
+             <property name="userDao" ref="org.via.dao.cUserDao"/>
+            <property name="activityDao" ref="org.via.dao.cActivityDao"/>
+        </bean>
+        
+        <bean name="/playback_edit.htm" class="org.via.tool.EditPlaybackController" scope="request">
+             <property name="apiTool" ref="org.via.IapiTool"/>
+            <property name="userDao" ref="org.via.dao.cUserDao"/>
+            <property name="activityDao" ref="org.via.dao.cActivityDao"/>
+        </bean>
+        
+        <bean name="/record_download.htm" class="org.via.tool.RecordDownloadController" scope="request">
+             <property name="apiTool" ref="org.via.IapiTool"/>
+            <property name="userDao" ref="org.via.dao.cUserDao"/>
+            <property name="activityDao" ref="org.via.dao.cActivityDao"/>
+        </bean>
+        
+        
+</beans>
