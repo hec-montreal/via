@@ -462,3 +462,7 @@ SELECT#animators,SELECT#participants,SELECT#members {
 tr.activity td {
 	padding: 10px 0 10px 0!important;
 }
+
+div.supportMessage {
+	padding: 15px 0px;
+}

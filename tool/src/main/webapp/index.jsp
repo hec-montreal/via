@@ -26,7 +26,7 @@
         </select>
     </form>
 </c:if>
-
+<div class="supportMessage">${ToolManager.getText("supportMessage")}</div>
 <table class="activitylist">
 <tr class="title">
     <td>${ToolManager.getText("myActivityListTl")}</td>
