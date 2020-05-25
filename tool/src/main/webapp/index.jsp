@@ -12,19 +12,21 @@
 </c:if>
 
 <c:if test="${userCanCreate ==  true && fn:length(groupList) gt 0}">
-    <form id="cal" name="form" method="post" action="index.htm" >
-        <span>${ToolManager.getText("GroupFilter")}</span>
+    <div class="groupFilter">
+        <form id="cal" name="form" method="post" action="index.htm" >
+            <span>${ToolManager.getText("GroupFilter")}</span>
 
-        <select id="group" name="group" onchange="this.form.submit()">
-	        <option value=""></option>
-	        <c:if test="${canEditActivityOfSite ==  true}">
-               <option value="site" <c:if test="${'site' == groupSelected}"> selected </c:if> >${ToolManager.getText("site")}</option>
-            </c:if>
-	        <c:forEach items="${groupList}" var="group">
-	            <option value="${group.id}" <c:if test="${group.id == groupSelected}"> selected </c:if> > ${group.title}</option> 
-	        </c:forEach>
-        </select>
-    </form>
+            <select id="group" name="group" onchange="this.form.submit()">
+	            <option value=""></option>
+	            <c:if test="${canEditActivityOfSite ==  true}">
+                    <option value="site" <c:if test="${'site' == groupSelected}"> selected </c:if> >${ToolManager.getText("site")}</option>
+                </c:if>
+	            <c:forEach items="${groupList}" var="group">
+	                <option value="${group.id}" <c:if test="${group.id == groupSelected}"> selected </c:if> > ${group.title}</option> 
+	            </c:forEach>
+            </select>
+        </form>
+    </div>
 </c:if>
 <div class="supportMessage">${ToolManager.getText("supportMessage")}</div>
 <table class="activitylist">

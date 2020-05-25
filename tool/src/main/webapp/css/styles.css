@@ -20,7 +20,6 @@ H3 {
 }
 
 FORM#cal {
-	float: right;
 	padding: 10px 5px 0 0;
 }
 
@@ -461,6 +460,10 @@ SELECT#animators,SELECT#participants,SELECT#members {
 
 tr.activity td {
 	padding: 10px 0 10px 0!important;
+}
+
+div.groupFilter {
+	text-align: right;
 }
 
 div.supportMessage {
